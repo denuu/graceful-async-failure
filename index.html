@@ -8,28 +8,23 @@
     <p>This is my page</p>
   </body>
   <script>
-    let promise = fetch('coffee.jpg'); // pending state.
-
-    let promise2 = promise.then(response => {
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        } else {
-            return response.blob();
-        }
-    });
-
-    // NOTE: Each call to .then() creates a new promise.
-
-    let promise3 = promise2.then(myBlob => {
-        let objectURL = URL.createObjectURL(myBlob);
-        let image = document.createElement('img');
-        image.src = objectURL;
-        document.body.appendChild(image);
-    });
-
-    // TEST: misspelll the URL to the image and reload.
-    let errorCase = promise3.catch(e => {
-        console.log(`There has been a problem with your fetch operation: ${e.message}`);
-    });
+    // NOTE: Value returned by fulfilled promise becomes passed param to next .then() blocks callback function.
+    fetch('coffee.jpg')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${repsonse.status}`);
+            } else {
+                return response.blob(); // becomes myBlob below.
+            }
+        })
+        .then(myBlob => {
+            let objectURL = URL.createObjectURL(myBlob);
+            let image = document.createElement('img');
+            image.src = objectURL;
+            document.body.appendChild(image);
+        })
+        .catch(e => {
+            console.log(`There has been a problem with your fetch operation: ${e.message}`);
+        });
 </script>
 </html>
