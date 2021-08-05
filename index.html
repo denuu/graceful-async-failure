@@ -7,8 +7,7 @@
   <body>
     <p>This is my page</p>
   </body>
-</html>
-<script>
+  <script>
     let promise = fetch('coffee.jpg'); // pending state.
 
     let promise2 = promise.then(response => {
@@ -28,3 +27,4 @@
         document.body.appendChild(image);
     });
 </script>
+</html>
