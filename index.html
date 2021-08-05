@@ -20,7 +20,7 @@
 
     // NOTE: Each call to .then() creates a new promise.
 
-    let promise3 = promise2.then(myBlock => {
+    let promise3 = promise2.then(myBlob => {
         let objectURL = URL.createObjectURL(myBlob);
         let image = document.createElement('img');
         image.src = objectURL;
